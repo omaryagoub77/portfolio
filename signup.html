@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create an Omar portfolio account.">
+  <title>Create account — Omar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <aside class="auth-aside">
+    <a class="wordmark" href="index.html">OMAR<span>.</span></a>
+    <div class="auth-aside-copy">
+      <p class="eyebrow">Let's make something</p>
+      <h1>Start with<br>a hello.</h1>
+      <p>Create an account to keep project conversations and collaboration details in one place.</p>
+    </div>
+    <p class="auth-aside-foot">Frontend craft / Kigali, Rwanda</p>
+  </aside>
+  <main class="auth-main">
+    <div class="auth-form-wrap">
+      <p class="eyebrow">Get started</p>
+      <h2>Create account</h2>
+      <p class="form-intro">A few details and we can get the conversation started.</p>
+      <form class="auth-form" action="#" method="post">
+        <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required></div>
+        <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required></div>
+        <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" placeholder="At least 8 characters" autocomplete="new-password" minlength="8" required></div>
+        <label class="check-label terms-check"><input type="checkbox" name="terms" required> I agree to the terms and privacy policy.</label>
+        <button class="button button-dark auth-submit" type="submit">Create account <span aria-hidden="true">→</span></button>
+        <p class="auth-top">Already have an account? <a href="signin.html">Sign in</a></p>
+      </form>
+      <div class="auth-divider">or</div>
+      <p class="back-home"><a href="index.html"><span>←</span> Back to portfolio</a></p>
+    </div>
+  </main>
+</body>
+</html>
