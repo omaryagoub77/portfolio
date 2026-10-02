@@ -93,7 +93,7 @@ button, input { font: inherit; }
 .text-link { color: var(--accent-light); font: 500 11px var(--mono); }
 .text-link:hover { color: #ffc1a9; text-shadow: 0 0 16px rgba(255, 137, 93, .55); }
 .text-link span { font-size: 15px; }
-.project-shot { width: 100%; min-width: 0; aspect-ratio: 658 / 411; border: 1px solid #493236; border-radius: 3px; background-image: url("Html%20%E2%86%92%20Body%20Portfilio.png"); background-size: 197.9% auto; background-repeat: no-repeat; box-shadow: 0 18px 42px rgba(0, 0, 0, .42), 0 0 22px rgba(255, 88, 42, .11); }
+.project-shot { width: 100%; min-width: 0; aspect-ratio: 658 / 411; border: 1px solid #493236; border-radius: 3px; background-image: url("images/Html%20%E2%86%92%20Body%20Portfilio.png"); background-size: 197.9% auto; background-repeat: no-repeat; box-shadow: 0 18px 42px rgba(0, 0, 0, .42), 0 0 22px rgba(255, 88, 42, .11); }
 .dessert-shot { background-position: 87.3% 36.3%; }
 .calculator-shot { background-position: 10.9% 47.5%; }
 .project-calculator { grid-template-columns: 1fr 1.16fr; }
