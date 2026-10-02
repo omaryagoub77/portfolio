@@ -186,6 +186,22 @@
         <p>I am currently taking on selective freelance work, website redesigns, and frontend engineering contracts. Reach out directly via email.</p>
         <a class="button button-dark button-small contact-button" href="mailto:omaryagoub77@gmail.com" target="_blank" rel="noopener">omaryagoub77@gmail.com <span aria-hidden="true">↗</span></a>
         <small>Typically replies within 24 hours</small>
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="contact-field">
+            <label for="contact-name">Your name</label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="contact-field">
+            <label for="contact-email">Email address</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="contact-field">
+            <label for="contact-message">How can I help?</label>
+            <textarea id="contact-message" name="message" rows="5" minlength="10" required></textarea>
+          </div>
+          <button class="button button-dark" type="submit">Prepare email <span aria-hidden="true">↗</span></button>
+          <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
       <div class="contact-foot" data-motion="right">
         <div class="social-links" aria-label="Social links">
@@ -203,5 +219,6 @@
   <script src="hero-type.js" defer></script>
   <script src="dither-veil.js" defer></script>
   <script src="scroll-motion.js" defer></script>
+  <script src="contact-form.js" defer></script>
 </body>
 </html>
