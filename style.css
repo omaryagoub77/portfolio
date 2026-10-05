@@ -132,8 +132,8 @@ button, input { font: inherit; }
 .article-meta > span { padding: 5px 7px; border: 1px solid #503338; color: #ffc1a9; background: rgba(255, 88, 42, .11); }
 .article-card h3 { margin: 20px 0 12px; font: 700 17px/1.35 var(--display); letter-spacing: -.01em; }
 .article-card > p { margin: 0 0 20px; color: var(--muted); font-size: 13px; line-height: 1.6; }
-.article-card > a { display: flex; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 17px; border-top: 1px solid var(--line); color: var(--accent-light); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; transition: color .2s ease; }
-.article-card > a:hover { color: #ffc1a9; }
+.article-link { display: flex; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 17px; border-top: 1px solid var(--line); color: var(--accent-light); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; transition: color .2s ease; }
+.article-card:hover .article-link { color: #ffc1a9; }
 
 @property --beam-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 @supports ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {
