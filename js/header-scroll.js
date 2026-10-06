@@ -1,12 +1,15 @@
 (() => {
   const header = document.querySelector('.site-header');
-  const navigationLinks = [...document.querySelectorAll('.main-nav a[href^="#"]')];
+  const navigationLinks = [...document.querySelectorAll('.main-nav a')]
+    .map(link => ({
+      link,
+      target: document.querySelector(link.dataset.scrollTarget || link.hash)
+    }))
+    .filter(item => item.target);
 
-  if (!header || !navigationLinks.length) return;
+  if (!header) return;
 
-  const sections = navigationLinks
-    .map(link => document.querySelector(link.getAttribute('href')))
-    .filter(Boolean);
+  const sections = navigationLinks.map(item => item.target);
 
   const updateHeader = () => {
     const height = Math.ceil(header.getBoundingClientRect().height);
@@ -17,8 +20,8 @@
     const activeSection = sections.filter(section => section.getBoundingClientRect().top <= marker).at(-1);
 
     if (activeSection) {
-      navigationLinks.forEach(link => {
-        link.classList.toggle('active', link.hash === `#${activeSection.id}`);
+      navigationLinks.forEach(({ link, target }) => {
+        link.classList.toggle('active', target === activeSection);
       });
     }
   };

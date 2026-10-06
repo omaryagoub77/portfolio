@@ -18,11 +18,12 @@
       <a href="#skills">Skills</a>
       <a href="#work">My work</a>
       <a href="#about">About</a>
-      <a href="#writing">Blog</a>
+      <a href="blog.html" data-scroll-target="#writing">Blog</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-actions">
       <a class="button button-dark button-small" href="signin.html">Login</a>
+      <a class="button button-outline button-small" href="admin.html">Admin</a>
       <a class="button button-dark button-small" href="#contact">Get in Touch <span aria-hidden="true">↗</span></a>
     </div>
   </header>
@@ -153,27 +154,10 @@
           <h2 id="writing-title">Writings &amp; insights</h2>
           <p>Perspectives on scalable frontend architecture, typography, micro-interactions, and interface engineering.</p>
         </div>
-        <a class="button button-outline button-pill" data-motion="right" href="#writing">Read all posts <span aria-hidden="true">↗</span></a>
+        <a class="button button-outline button-pill" data-motion="right" href="blog.html">Read all posts <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="article-grid">
-        <a class="article-card" data-motion="left" href="https://omaryagoub.blogspot.com/2026/04/learning-coding-in-mahama.html" target="_blank" rel="noopener noreferrer">
-          <div class="article-meta"><span>Learning journey</span><time datetime="2026-04">Apr 2026</time></div>
-          <h3>My Coding Learning Journey in Mahama</h3>
-          <p>My experience learning to code in Mahama and the steps that shaped my journey into frontend development.</p>
-          <span class="article-link">Read article <span aria-hidden="true">→</span></span>
-        </a>
-        <a class="article-card" data-motion="up" href="https://omaryagoub.blogspot.com/2026/06/equation-approach-1.html" target="_blank" rel="noopener noreferrer">
-          <div class="article-meta"><span>App development</span><time datetime="2026-06">Jun 2026</time></div>
-          <h3>How I’m Going to Build My Next Habit Tracker App</h3>
-          <p>A look at my approach to planning and building a habit tracker app around a simple equation.</p>
-          <span class="article-link">Read article <span aria-hidden="true">→</span></span>
-        </a>
-        <a class="article-card" data-motion="right" href="https://omaryagoub.blogspot.com/2026/10/my-next-project-plant-disease.html" target="_blank" rel="noopener noreferrer">
-          <div class="article-meta"><span>Agriculture &amp; AI</span><time datetime="2026-10">Oct 2026</time></div>
-          <h3>How I’m Going to Make a Plant Disease Detector for Local Farmers</h3>
-          <p>My plan for creating a tool to help local farmers identify plant diseases.</p>
-          <span class="article-link">Read article <span aria-hidden="true">→</span></span>
-        </a>
+      <div class="article-grid" id="home-blog-posts" aria-live="polite">
+        <p class="blog-message">Loading posts…</p>
       </div>
     </section>
 
@@ -210,6 +194,7 @@
     </footer>
   </main>
   <script type="module" src="js/firebase-auth.js"></script>
+  <script type="module" src="js/home-blog.js"></script>
   <script src="js/numeric.js" defer></script>
   <script src="js/black-hole.js" defer></script>
   <script src="js/hero-hole.js" defer></script>

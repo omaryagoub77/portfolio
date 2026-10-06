@@ -1,0 +1,47 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == "omaryagoub77@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
+
+    function validPost(data) {
+      return data.keys().hasAll([
+          "title", "category", "excerpt", "content", "status",
+          "createdAt", "updatedAt", "publishedAt"
+        ])
+        && data.keys().hasOnly([
+          "title", "category", "excerpt", "content", "status",
+          "createdAt", "updatedAt", "publishedAt"
+        ])
+        && data.title is string
+        && data.title.size() > 0
+        && data.title.size() <= 120
+        && data.category is string
+        && data.category.size() > 0
+        && data.category.size() <= 50
+        && data.excerpt is string
+        && data.excerpt.size() > 0
+        && data.excerpt.size() <= 240
+        && data.content is string
+        && data.content.size() > 0
+        && data.content.size() <= 30000
+        && data.status in ["draft", "published"]
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp
+        && (data.publishedAt == null || data.publishedAt is timestamp);
+    }
+
+    match /posts/{postId} {
+      allow read: if isAdmin() || resource.data.status == "published";
+      allow create: if isAdmin() && validPost(request.resource.data);
+      allow update: if isAdmin()
+        && validPost(request.resource.data)
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isAdmin();
+    }
+  }
+}

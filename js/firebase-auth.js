@@ -1,27 +1,16 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {
   browserLocalPersistence,
   browserSessionPersistence,
   createUserWithEmailAndPassword,
-  getAuth,
   onAuthStateChanged,
   sendPasswordResetEmail,
+  sendEmailVerification,
+  signOut,
   setPersistence,
   signInWithEmailAndPassword,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAIo3jxaMDe8FZ12qQHVKkoeS9JTM0Yxvg",
-  authDomain: "money-box-dcc11.firebaseapp.com",
-  projectId: "money-box-dcc11",
-  storageBucket: "money-box-dcc11.firebasestorage.app",
-  messagingSenderId: "350529130801",
-  appId: "1:350529130801:web:7788f377c0d2cf1ce62010",
-  measurementId: "G-XDGKKSV7GQ"
-};
-
-const auth = getAuth(initializeApp(firebaseConfig));
+import { auth } from "./firebase.js";
 const form = document.querySelector("#signin-form, #signup-form");
 const message = document.querySelector("#auth-message");
 const loginLink = document.querySelector('.header-actions a[href="signin.html"]');
@@ -49,7 +38,10 @@ if (form) {
   }
 
   function redirectHome() {
-    window.setTimeout(() => window.location.replace("index.html"), 800);
+    const destination = !isSignUp && new URLSearchParams(window.location.search).get("next") === "admin.html"
+      ? "admin.html"
+      : "index.html";
+    window.setTimeout(() => window.location.replace(destination), 800);
   }
 
   function getAuthErrorMessage(error) {
@@ -82,9 +74,27 @@ if (form) {
         const name = form.elements.namedItem("name").value.trim();
         const credential = await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value);
 
+        let profileUpdated = true;
         try {
           await updateProfile(credential.user, { displayName: name });
         } catch {
+          profileUpdated = false;
+        }
+
+        if (emailInput.value.trim().toLowerCase() === "omaryagoub77@gmail.com") {
+          await sendEmailVerification(credential.user);
+          await signOut(auth);
+          showMessage(
+            profileUpdated
+              ? "Check your inbox and verify your email before signing in to the blog dashboard."
+              : "A verification link was sent, but we could not save your name. Verify your email, then sign in to the dashboard.",
+            profileUpdated ? "success" : "warning"
+          );
+          form.reset();
+          return;
+        }
+
+        if (!profileUpdated) {
           showMessage("Your account was created, but we could not save your name. You can update it later.", "warning");
           form.reset();
           redirectHome();

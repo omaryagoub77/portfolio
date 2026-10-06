@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read the latest writing and insights from Omar Yagoub.">
+  <title>Blog — Omar Yagoub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="index.html" aria-label="Omar home">OMAR<span>.</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#work">My work</a>
+      <a href="index.html#about">About</a>
+      <a class="active" href="blog.html">Blog</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="button button-dark button-small" href="signin.html">Login</a>
+      <a class="button button-dark button-small" href="index.html#contact">Get in Touch <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main class="blog-page">
+    <section class="blog-intro section-wrap">
+      <p class="eyebrow">Writing / Ideas / Experiments</p>
+      <h1 id="blog-heading">The blog<span>.</span></h1>
+      <p class="blog-description">Notes on frontend development, thoughtful design, and the things I’m learning along the way.</p>
+      <a class="button button-outline blog-home-button" href="index.html">← Back to website</a>
+    </section>
+    <section class="section-wrap blog-content" aria-labelledby="blog-heading">
+      <a class="blog-back" id="blog-back" href="blog.html" hidden>← All posts</a>
+      <div class="article-grid blog-grid" id="blog-posts" aria-live="polite">
+        <p class="blog-message">Loading posts…</p>
+      </div>
+    </section>
+  </main>
+  <footer class="blog-footer section-wrap">
+    <a class="wordmark" href="index.html">OMAR<span>.</span></a>
+    <p class="copyright">© 2026 Omar Yagoub — Kigali, Rwanda</p>
+  </footer>
+  <script src="js/header-scroll.js" defer></script>
+  <script type="module" src="js/firebase-auth.js"></script>
+  <script type="module" src="js/blog.js"></script>
+</body>
+</html>
