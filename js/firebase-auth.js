@@ -15,10 +15,25 @@ const form = document.querySelector("#signin-form, #signup-form");
 const message = document.querySelector("#auth-message");
 const loginLink = document.querySelector('.header-actions a[href="signin.html"]');
 
+function logAuthError(context, error) {
+  const details = error && typeof error === "object" ? error : {};
+  console.error(context, {
+    code: "code" in details ? details.code : "unknown",
+    message: "message" in details ? details.message : String(error)
+  }, error);
+}
+
 if (loginLink instanceof HTMLAnchorElement) {
-  onAuthStateChanged(auth, (user) => {
-    loginLink.hidden = Boolean(user);
-  });
+  onAuthStateChanged(
+    auth,
+    (user) => {
+      loginLink.hidden = Boolean(user);
+    },
+    (error) => {
+      logAuthError("Could not check the signed-in account for the header.", error);
+      loginLink.hidden = false;
+    }
+  );
 }
 
 if (form) {
@@ -77,7 +92,8 @@ if (form) {
         let profileUpdated = true;
         try {
           await updateProfile(credential.user, { displayName: name });
-        } catch {
+        } catch (error) {
+          logAuthError("Could not update the new account profile.", error);
           profileUpdated = false;
         }
 
@@ -114,6 +130,7 @@ if (form) {
       form.reset();
       redirectHome();
     } catch (error) {
+      logAuthError("Authentication request failed.", error);
       showMessage(getAuthErrorMessage(error));
     } finally {
       submitButton.disabled = false;
@@ -132,6 +149,7 @@ if (form) {
         await sendPasswordResetEmail(auth, emailInput.value.trim());
         showMessage("If an account exists for that email, a password reset link has been sent.", "success");
       } catch (error) {
+        logAuthError("Could not send the password reset email.", error);
         showMessage(getAuthErrorMessage(error));
       } finally {
         resetButton.disabled = false;

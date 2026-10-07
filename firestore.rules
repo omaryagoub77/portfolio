@@ -35,6 +35,21 @@ service cloud.firestore {
         && (data.publishedAt == null || data.publishedAt is timestamp);
     }
 
+    function validContactMessage(data) {
+      return data.keys().hasAll(["name", "email", "message", "createdAt"])
+        && data.keys().hasOnly(["name", "email", "message", "createdAt"])
+        && data.name is string
+        && data.name.size() > 0
+        && data.name.size() <= 100
+        && data.email is string
+        && data.email.size() > 0
+        && data.email.size() <= 254
+        && data.message is string
+        && data.message.size() >= 10
+        && data.message.size() <= 5000
+        && data.createdAt is timestamp;
+    }
+
     match /posts/{postId} {
       allow read: if isAdmin() || resource.data.status == "published";
       allow create: if isAdmin() && validPost(request.resource.data);
@@ -42,6 +57,14 @@ service cloud.firestore {
         && validPost(request.resource.data)
         && request.resource.data.createdAt == resource.data.createdAt;
       allow delete: if isAdmin();
+    }
+
+    match /contactMessages/{messageId} {
+      allow create: if validContactMessage(request.resource.data);
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["read"])
+        && request.resource.data.read is bool;
     }
   }
 }

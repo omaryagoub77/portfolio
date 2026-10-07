@@ -22,7 +22,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-actions">
-      <a class="button button-dark button-small" href="signin.html">Login</a>
+      <a class="button button-dark button-small" href="signin.html" hidden>Login</a>
       <a class="button button-outline button-small" href="admin.html">Admin</a>
       <a class="button button-dark button-small" href="#contact">Get in Touch <span aria-hidden="true">↗</span></a>
     </div>
@@ -169,17 +169,17 @@
         <form class="contact-form" id="contact-form" novalidate>
           <div class="contact-field">
             <label for="contact-name">Your name</label>
-            <input id="contact-name" name="name" type="text" autocomplete="name" required>
+            <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" required>
           </div>
           <div class="contact-field">
             <label for="contact-email">Email address</label>
-            <input id="contact-email" name="email" type="email" autocomplete="email" required>
+            <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
           </div>
           <div class="contact-field">
             <label for="contact-message">How can I help?</label>
-            <textarea id="contact-message" name="message" rows="5" minlength="10" required></textarea>
+            <textarea id="contact-message" name="message" rows="5" minlength="10" maxlength="5000" required></textarea>
           </div>
-          <button class="button button-dark" type="submit">Prepare email <span aria-hidden="true">↗</span></button>
+          <button class="button button-dark" type="submit">Send message <span aria-hidden="true">↗</span></button>
           <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
         </form>
         <small>Typically replies within 24 hours</small>
@@ -202,6 +202,6 @@
   <script src="js/hero-type.js" defer></script>
   <script src="js/dither-veil.js" defer></script>
   <script src="js/scroll-motion.js" defer></script>
-  <script src="js/contact-form.js" defer></script>
+  <script type="module" src="js/contact-form.js"></script>
 </body>
 </html>

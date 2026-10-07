@@ -28,6 +28,7 @@
       <nav class="admin-nav" aria-label="Admin navigation">
         <a class="admin-nav-link is-active" href="#dashboard" data-admin-tab="dashboard">Overview</a>
         <a class="admin-nav-link" href="#posts" data-admin-tab="posts">All posts</a>
+        <button class="admin-nav-link" type="button" data-admin-tab="messages">Contact inbox <span class="admin-unread-count" id="contact-unread-count" hidden></span></button>
         <button class="admin-nav-link" id="new-post-link" type="button">Write a post <span aria-hidden="true">＋</span></button>
       </nav>
       <a class="admin-public-link" href="blog.html">View public blog <span aria-hidden="true">↗</span></a>
@@ -50,6 +51,7 @@
           <article class="admin-stat"><span>All posts</span><strong id="stat-total">—</strong></article>
           <article class="admin-stat"><span>Published</span><strong id="stat-published">—</strong></article>
           <article class="admin-stat"><span>Drafts</span><strong id="stat-drafts">—</strong></article>
+          <article class="admin-stat"><span>Messages received</span><strong id="stat-messages">—</strong></article>
         </div>
         <div class="admin-list-heading"><div><p class="eyebrow">Recently updated</p><h2>Your posts</h2></div><button class="text-button" type="button" data-admin-tab="posts">See all posts →</button></div>
         <div class="admin-post-list" id="recent-posts"></div>
@@ -58,6 +60,11 @@
       <section class="admin-panel" id="posts-panel" aria-labelledby="posts-title" hidden>
         <div class="admin-heading"><div><p class="eyebrow">Your library</p><h1 id="posts-title">All posts</h1><p>Draft, edit, publish, or remove your writing.</p></div><button class="button button-dark" type="button" data-open-editor>Write a post <span aria-hidden="true">＋</span></button></div>
         <div class="admin-post-list" id="all-posts"></div>
+      </section>
+
+      <section class="admin-panel" id="messages-panel" aria-labelledby="messages-title" hidden>
+        <div class="admin-heading"><div><p class="eyebrow">Incoming inquiries</p><h1 id="messages-title">Contact inbox</h1><p>Messages submitted through your portfolio contact form.</p></div></div>
+        <div class="admin-message-list" id="contact-messages"></div>
       </section>
 
       <section class="admin-panel" id="editor-panel" aria-labelledby="editor-title" hidden>
