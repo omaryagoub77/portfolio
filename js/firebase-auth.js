@@ -43,8 +43,36 @@ if (form) {
 
   const emailInput = form.elements.namedItem("email");
   const passwordInput = form.elements.namedItem("password");
+  const passwordToggle = form.querySelector("[data-password-toggle]");
   const submitButton = form.querySelector('button[type="submit"]');
   const isSignUp = form.id === "signup-form";
+
+  if (!(passwordInput instanceof HTMLInputElement) || !(passwordToggle instanceof HTMLButtonElement)) {
+    throw new Error("The password field or its visibility toggle is missing.");
+  }
+
+  const showPasswordIcon = passwordToggle.querySelector(".password-toggle-show");
+  const hidePasswordIcon = passwordToggle.querySelector(".password-toggle-hide");
+  if (!(showPasswordIcon instanceof SVGElement) || !(hidePasswordIcon instanceof SVGElement)) {
+    throw new Error("The password visibility icons are missing.");
+  }
+
+  passwordToggle.addEventListener("click", () => {
+    const showPassword = passwordInput.type === "password";
+    passwordInput.type = showPassword ? "text" : "password";
+    passwordToggle.setAttribute("aria-label", showPassword ? "Hide password" : "Show password");
+    passwordToggle.setAttribute("aria-pressed", String(showPassword));
+    showPasswordIcon.hidden = showPassword;
+    hidePasswordIcon.hidden = !showPassword;
+  });
+
+  form.addEventListener("reset", () => {
+    passwordInput.type = "password";
+    passwordToggle.setAttribute("aria-label", "Show password");
+    passwordToggle.setAttribute("aria-pressed", "false");
+    showPasswordIcon.hidden = false;
+    hidePasswordIcon.hidden = true;
+  });
 
   function showMessage(text, state = "error") {
     message.textContent = text;

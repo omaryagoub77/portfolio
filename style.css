@@ -198,6 +198,16 @@ button, input { font: inherit; }
 .field { display: grid; gap: 6px; }
 .field label { color: #e5e9f3; font-size: 12px; font-weight: 700; }
 .field input { width: 100%; min-height: clamp(42px, 6svh, 48px); padding: 0 14px; border: 1px solid #463136; border-radius: 3px; outline: 0; color: var(--ink); background: #1c1217; }
+.password-input-wrap { position: relative; }
+.password-input-wrap input { padding-right: 48px; }
+.password-toggle { position: absolute; top: 50%; right: 6px; display: grid; width: 36px; height: 36px; padding: 8px; transform: translateY(-50%); place-items: center; border: 0; border-radius: 3px; color: #b0b8c8; background: transparent; cursor: pointer; }
+.password-toggle:hover, .password-toggle:focus-visible { color: var(--accent-light); background: rgba(255, 88, 42, .1); }
+.password-toggle:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 1px; }
+.password-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.password-toggle svg[hidden] { display: none; }
+.password-toggle[aria-pressed="false"] .password-toggle-hide,
+.password-toggle[aria-pressed="true"] .password-toggle-show { display: none; }
+.password-toggle[aria-pressed="true"] .password-toggle-hide { display: block; }
 .field input::placeholder { color: #778198; }
 .field input:focus { border-color: var(--accent-light); box-shadow: 0 0 0 2px rgba(255, 88, 42, .22), 0 0 22px rgba(255, 88, 42, .12); }
 .form-options { display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #b0b8c8; font-size: 12px; }
