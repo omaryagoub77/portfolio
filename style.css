@@ -217,6 +217,10 @@ button, input { font: inherit; }
 .auth-inline-button { padding: 0; border: 0; color: inherit; background: transparent; font: inherit; cursor: pointer; }
 .auth-submit { width: 100%; margin-top: 5px; cursor: pointer; }
 .auth-submit:disabled { cursor: wait; opacity: .7; }
+.google-signin { width: 100%; color: var(--ink); cursor: pointer; }
+.google-signin:hover { color: var(--ink); border-color: #8b737b; background: rgba(255, 255, 255, .06); box-shadow: none; }
+.google-signin:disabled { cursor: wait; opacity: .7; }
+.google-signin svg { width: 18px; height: 18px; }
 .terms { margin: 18px 0 0; color: #939caf; font-size: 11px; line-height: 1.5; text-align: center; }
 .auth-divider { display: flex; align-items: center; gap: 14px; margin: 16px 0; color: #8590a5; font: 400 10px var(--mono); text-transform: uppercase; }
 .auth-divider::before, .auth-divider::after { height: 1px; flex: 1; background: var(--line); content: ""; }

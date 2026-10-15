@@ -2,11 +2,13 @@ import {
   browserLocalPersistence,
   browserSessionPersistence,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   sendPasswordResetEmail,
   sendEmailVerification,
   signOut,
   setPersistence,
+  signInWithPopup,
   signInWithEmailAndPassword,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
@@ -45,6 +47,7 @@ if (form) {
   const passwordInput = form.elements.namedItem("password");
   const passwordToggle = form.querySelector("[data-password-toggle]");
   const submitButton = form.querySelector('button[type="submit"]');
+  const googleSignInButton = document.querySelector("#google-signin");
   const isSignUp = form.id === "signup-form";
 
   if (!(passwordInput instanceof HTMLInputElement) || !(passwordToggle instanceof HTMLButtonElement)) {
@@ -95,8 +98,13 @@ if (form) {
       "auth/invalid-login-credentials": "The email or password is incorrect. Please try again.",
       "auth/invalid-email": "Enter a valid email address.",
       "auth/missing-email": "Enter your email address first.",
-      "auth/operation-not-allowed": "Email and password sign-in is not enabled for this Firebase project.",
+      "auth/operation-not-allowed": "This sign-in method is not enabled for this Firebase project. Enable it in Firebase Authentication settings.",
+      "auth/account-exists-with-different-credential": "An account already exists with this email. Sign in using its original method.",
+      "auth/cancelled-popup-request": "Another sign-in window is already open. Complete or close it, then try again.",
+      "auth/popup-blocked": "Your browser blocked the Google sign-in window. Allow popups for this site and try again.",
+      "auth/popup-closed-by-user": "The Google sign-in window was closed before sign-in finished.",
       "auth/too-many-requests": "Too many attempts. Please wait a moment and try again.",
+      "auth/unauthorized-domain": "This site domain is not authorized for Firebase sign-in. Add it in Firebase Authentication settings.",
       "auth/user-disabled": "This account has been disabled. Contact the site owner for help.",
       "auth/user-not-found": "Could not send a reset email. Check the address and try again.",
       "auth/weak-password": "Choose a stronger password with at least 8 characters.",
@@ -106,10 +114,36 @@ if (form) {
     return messages[code] || "Authentication failed. Please try again.";
   }
 
+  if (!isSignUp && googleSignInButton instanceof HTMLButtonElement) {
+    googleSignInButton.addEventListener("click", async () => {
+      message.hidden = true;
+      googleSignInButton.disabled = true;
+      submitButton.disabled = true;
+      form.setAttribute("aria-busy", "true");
+
+      try {
+        const rememberMe = form.elements.namedItem("remember").checked;
+        await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+        await signInWithPopup(auth, new GoogleAuthProvider());
+        showMessage("You are signed in successfully. Taking you home...", "success");
+        redirectHome();
+      } catch (error) {
+        logAuthError("Google sign-in request failed.", error);
+        showMessage(getAuthErrorMessage(error));
+      } finally {
+        googleSignInButton.disabled = false;
+        submitButton.disabled = false;
+        form.removeAttribute("aria-busy");
+      }
+    });
+  }
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (form.getAttribute("aria-busy") === "true") return;
     message.hidden = true;
     submitButton.disabled = true;
+    if (googleSignInButton instanceof HTMLButtonElement) googleSignInButton.disabled = true;
     form.setAttribute("aria-busy", "true");
 
     try {
@@ -162,6 +196,7 @@ if (form) {
       showMessage(getAuthErrorMessage(error));
     } finally {
       submitButton.disabled = false;
+      if (googleSignInButton instanceof HTMLButtonElement) googleSignInButton.disabled = false;
       form.removeAttribute("aria-busy");
     }
   });
