@@ -229,7 +229,19 @@ window.BlackHole = {};
     if (!opt['staticHole']) {
       var target = opt['pointerTarget'] ? document.getElementById(opt['pointerTarget']) : canvas;
       if (target) {
-        target.addEventListener('pointermove', function (evt) { renderHole(evt.clientX, evt.clientY); }, { passive: true });
+        var renderScheduled = false;
+        var lastPointerX = 0;
+        var lastPointerY = 0;
+        target.addEventListener('pointermove', function (evt) {
+          lastPointerX = evt.clientX;
+          lastPointerY = evt.clientY;
+          if (renderScheduled || document.hidden) return;
+          renderScheduled = true;
+          window.requestAnimationFrame(function () {
+            renderScheduled = false;
+            if (!document.hidden) renderHole(lastPointerX, lastPointerY);
+          });
+        }, { passive: true });
         target.addEventListener('pointerleave', renderCentered);
       }
     }

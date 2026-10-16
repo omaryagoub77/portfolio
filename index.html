@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Omar is a frontend developer and UI/UX designer based in Kigali, Rwanda.">
   <title>Omar — Frontend Developer &amp; UI Designer</title>
+  <link rel="preload" as="image" href="images/omar.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -35,9 +37,9 @@
       <div class="hero-hole" id="black-hole" aria-hidden="true"></div>
       <div class="portrait">
         <div class="portrait-frame">
-          <img src="images/omar.png" alt="Portrait of Omar">
+          <img src="images/omar.webp" alt="Portrait of Omar" width="1086" height="1448" fetchpriority="high" decoding="async">
         </div>
-        <img class="portrait-popout-image" src="images/omar.png" alt="" aria-hidden="true">
+        <img class="portrait-popout-image" src="images/omar.webp" alt="" aria-hidden="true" width="1086" height="1448" decoding="async">
       </div>
       <div class="hero-copy">
         <p class="hero-intro">I'm Omar Yagoub and I'm a</p>
@@ -219,11 +221,8 @@
   </main>
   <script type="module" src="js/firebase-auth.js"></script>
   <script type="module" src="js/home-blog.js"></script>
-  <script src="js/numeric.js" defer></script>
-  <script src="js/black-hole.js" defer></script>
   <script src="js/hero-hole.js" defer></script>
   <script src="js/header-scroll.js" defer></script>
-  <script src="js/hero-type.js" defer></script>
   <script src="js/scroll-motion.js" defer></script>
   <script type="module" src="js/contact-form.js"></script>
 </body>
