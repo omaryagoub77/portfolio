@@ -16,6 +16,7 @@ import { auth } from "./firebase.js";
 const form = document.querySelector("#signin-form, #signup-form");
 const message = document.querySelector("#auth-message");
 const loginLink = document.querySelector('.header-actions a[href="signin.html"]');
+const headerSignout = document.querySelector("[data-header-signout]");
 
 function logAuthError(context, error) {
   const details = error && typeof error === "object" ? error : {};
@@ -30,12 +31,27 @@ if (loginLink instanceof HTMLAnchorElement) {
     auth,
     (user) => {
       loginLink.hidden = Boolean(user);
+      if (headerSignout instanceof HTMLButtonElement) headerSignout.hidden = !user;
     },
     (error) => {
       logAuthError("Could not check the signed-in account for the header.", error);
       loginLink.hidden = false;
+      if (headerSignout instanceof HTMLButtonElement) headerSignout.hidden = true;
     }
   );
+}
+
+if (headerSignout instanceof HTMLButtonElement) {
+  headerSignout.addEventListener("click", async () => {
+    headerSignout.disabled = true;
+    try {
+      await signOut(auth);
+    } catch (error) {
+      logAuthError("Could not sign out from the header.", error);
+    } finally {
+      headerSignout.disabled = false;
+    }
+  });
 }
 
 if (form) {
@@ -114,7 +130,7 @@ if (form) {
     return messages[code] || "Authentication failed. Please try again.";
   }
 
-  if (!isSignUp && googleSignInButton instanceof HTMLButtonElement) {
+  if (googleSignInButton instanceof HTMLButtonElement) {
     googleSignInButton.addEventListener("click", async () => {
       message.hidden = true;
       googleSignInButton.disabled = true;
@@ -122,10 +138,14 @@ if (form) {
       form.setAttribute("aria-busy", "true");
 
       try {
-        const rememberMe = form.elements.namedItem("remember").checked;
-        await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+        if (isSignUp) {
+          await setPersistence(auth, browserLocalPersistence);
+        } else {
+          const rememberMe = form.elements.namedItem("remember").checked;
+          await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+        }
         await signInWithPopup(auth, new GoogleAuthProvider());
-        showMessage("You are signed in successfully. Taking you home...", "success");
+        showMessage(isSignUp ? "Your account is ready. Taking you home..." : "You are signed in successfully. Taking you home...", "success");
         redirectHome();
       } catch (error) {
         logAuthError("Google sign-in request failed.", error);

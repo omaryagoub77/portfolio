@@ -1,6 +1,14 @@
 (() => {
   const hero = document.getElementById('home');
-  if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const supportsPointerEffect = window.matchMedia(
+    '(min-width: 1024px) and (hover: hover) and (pointer: fine)'
+  ).matches;
+
+  if (
+    !hero ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    !supportsPointerEffect
+  ) return;
 
   let queued = false;
   let started = false;

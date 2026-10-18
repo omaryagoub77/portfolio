@@ -10,22 +10,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
   <header class="site-header">
     <a class="wordmark" href="#home" aria-label="Omar home">OMAR<span>.</span></a>
-    <nav class="main-nav" aria-label="Main navigation">
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
       <a class="active" href="#home">Home</a>
       <a href="#skills">Skills</a>
       <a href="#work">My work</a>
       <a href="#about">About</a>
+      <a href="#education">Education</a>
       <a href="blog.html" data-scroll-target="#writing">Blog</a>
       <a href="#contact">Contact</a>
+      <a class="mobile-admin-link" href="admin.html">Admin</a>
     </nav>
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="menu-icon-bars" d="M4 7h16M4 12h16M4 17h16"></path><path class="menu-icon-x" d="m6 6 12 12M18 6 6 18"></path></svg>
+    </button>
     <div class="header-actions">
       <a class="button button-dark button-small" href="signin.html">Login</a>
-      <a class="button button-dark button-small" href="admin.html">Admin</a>
+      <button class="button button-small header-logout" type="button" data-header-signout hidden>Log out</button>
+      <a class="button button-dark button-small header-admin-action" href="admin.html">Admin</a>
       
       <a class="button button-dark button-small" href="#contact">Get in Touch <span aria-hidden="true">↗</span></a>
     </div>
@@ -173,6 +179,70 @@
       </div>
     </section>
 
+    <section class="education" id="education" aria-labelledby="education-title">
+      <div class="education-inner section-wrap">
+        <div class="education-heading">
+          <div>
+            <p class="eyebrow">My background</p>
+            <h2 id="education-title">Education &amp;<br>learning journey</h2>
+          </div>
+          <p>Originally from Sudan and building my future in Rwanda, I learn through curiosity and hands-on practice. My high-school studies were interrupted by the ongoing war in Sudan; I continue exploring programming, UI/UX design, and mobile development by turning ideas into practical projects. My goal is to build useful digital products and contribute to my community.</p>
+        </div>
+        <div class="education-content">
+          <section class="formal-education" aria-labelledby="formal-education-title">
+            <p class="eyebrow">01 / Formal education</p>
+            <h3 id="formal-education-title">Academic studies</h3>
+            <div class="education-timeline">
+              <article class="education-entry">
+                <h4>Al Nagah High School</h4>
+                <p class="education-location">El Obeid, South Kordofan State, Sudan</p>
+                <p class="education-level">Studied through Senior 6</p>
+                <p>My university education was interrupted by the ongoing war in Sudan. I could not complete my studies.</p>
+              </article>
+            </div>
+          </section>
+          <section class="self-learning" aria-labelledby="self-learning-title">
+            <p class="eyebrow">02 / Self-directed learning</p>
+            <h3 id="self-learning-title">Learning by building</h3>
+            <div class="learning-grid">
+              <article class="learning-card" data-motion="up">
+                <div class="learning-card-heading">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"></rect><path d="M3 9h18M7 6.5h.01M10 6.5h.01M7 13l2 2 3-4"></path></svg>
+                  <h4>Web development</h4>
+                </div>
+                <p>Building interactive, responsive websites while continuing to develop my frontend foundations.</p>
+                <ul class="learning-tags" aria-label="Web development learning areas"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+              </article>
+              <article class="learning-card" data-motion="up">
+                <div class="learning-card-heading">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 10 5l3.2 7.4L16 7l4 12"></path><path d="M6 15h12"></path></svg>
+                  <h4>UI/UX design</h4>
+                </div>
+                <p>Exploring interface design, visual hierarchy, usability, and thoughtful page layouts.</p>
+                <ul class="learning-tags" aria-label="UI/UX design learning areas"><li>Interfaces</li><li>Layout</li><li>Usability</li></ul>
+              </article>
+              <article class="learning-card" data-motion="up">
+                <div class="learning-card-heading">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2"></rect><path d="M10 5h4M11 18.5h2"></path></svg>
+                  <h4>Mobile app development</h4>
+                </div>
+                <p>Learning to design and build mobile applications, including Android-focused projects.</p>
+                <ul class="learning-tags" aria-label="Mobile app development learning areas"><li>Mobile UI</li><li>Android</li><li>App building</li></ul>
+              </article>
+              <article class="learning-card" data-motion="up">
+                <div class="learning-card-heading">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5-5 7 5 7M16 5l5 7-5 7M14 3l-4 18"></path></svg>
+                  <h4>Practical projects</h4>
+                </div>
+                <p>Applying what I learn by building, debugging, trying new tools, and improving each iteration.</p>
+                <ul class="learning-tags" aria-label="Practical project learning areas"><li>Building</li><li>Debugging</li><li>Iteration</li></ul>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <section class="writing section-wrap" id="writing" aria-labelledby="writing-title">
       <div class="writing-heading">
         <div data-motion="left">
@@ -221,8 +291,8 @@
   </main>
   <script type="module" src="js/firebase-auth.js"></script>
   <script type="module" src="js/home-blog.js"></script>
-  <script src="js/hero-hole.js" defer></script>
-  <script src="js/header-scroll.js" defer></script>
+  <script src="js/hero-hole.js?v=3" defer></script>
+  <script src="js/header-scroll.js?v=5" defer></script>
   <script src="js/scroll-motion.js" defer></script>
   <script type="module" src="js/contact-form.js"></script>
 </body>

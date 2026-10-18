@@ -8,21 +8,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
   <header class="site-header">
     <a class="wordmark" href="index.html" aria-label="Omar home">OMAR<span>.</span></a>
-    <nav class="main-nav" aria-label="Main navigation">
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
       <a href="index.html#home">Home</a>
       <a href="index.html#skills">Skills</a>
       <a href="index.html#work">My work</a>
       <a href="index.html#about">About</a>
+      <a href="index.html#education">Education</a>
       <a class="active" href="blog.html">Blog</a>
       <a href="index.html#contact">Contact</a>
+      <a class="mobile-admin-link" href="admin.html">Admin</a>
     </nav>
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="menu-icon-bars" d="M4 7h16M4 12h16M4 17h16"></path><path class="menu-icon-x" d="m6 6 12 12M18 6 6 18"></path></svg>
+    </button>
     <div class="header-actions">
       <a class="button button-dark button-small" href="signin.html" hidden>Login</a>
+      <button class="button button-small header-logout" type="button" data-header-signout hidden>Log out</button>
       <a class="button button-dark button-small" href="index.html#contact">Get in Touch <span aria-hidden="true">↗</span></a>
     </div>
   </header>
@@ -44,7 +50,7 @@
     <a class="wordmark" href="index.html">OMAR<span>.</span></a>
     <p class="copyright">© 2026 Omar Yagoub — Kigali, Rwanda</p>
   </footer>
-  <script src="js/header-scroll.js" defer></script>
+  <script src="js/header-scroll.js?v=5" defer></script>
   <script type="module" src="js/firebase-auth.js"></script>
   <script type="module" src="js/blog.js"></script>
 </body>
